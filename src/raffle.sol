@@ -1,8 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity 0.8.19;
-import {VRFConsumerBaseV2Plus} from "@chainlink/contracts/src/v0.8/vrf/dev/VRFConsumerBaseV2Plus.sol";
-import {VRFV2PlusClient} from "@chainlink/contracts/src/v0.8/vrf/dev/libraries/VRFV2PlusClient.sol";
-import {AutomationCompatibleInterface} from "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
+
+import {VRFConsumerBaseV2} from "chainlink-brownie-contracts/src/v0.8/dev/VRFConsumerBaseV2.sol";
+import {VRFV2PlusClient} from "chainlink-brownie-contracts/dev/libraries/VRFV2PlusClient.sol";
+import {AutomationCompatibleInterface} from "chainlink-brownie-contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
 
 /**
  * @title A simple raffle contract
@@ -49,9 +50,12 @@ contract Raffle is VRFConsumerBaseV2Plus, AutomationCompatibleInterface{
 
         
     }
+    function fulfillRandomWords(uint256, /* requestId */ uint256[] calldata randomWords) internal override {
+    }
     function pickWinner() public returns(uint256){
 
     }
+
     /** Getter function */
     function getEntranceFee() public view returns (uint256){
         return i_entranceFee;
